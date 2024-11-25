@@ -1,0 +1,172 @@
+# Permissions in Android
+
+## Overview
+
+**Permissions** in Android safeguard user privacy by restricting app access to sensitive data or resources. Apps must explicitly request the user's approval to perform specific operations, such as accessing the camera, reading contacts, or obtaining the user's location.
+
+---
+
+## **What Are Permissions?**
+Permissions define a system of rules that apps must follow to access protected resources. Examples include:
+- **Normal Permissions**: Automatically granted by the system without user interaction.
+- **Dangerous Permissions**: Require explicit user consent as they involve sensitive user data.
+
+---
+
+## **Why Are Permissions Important?**
+1. **User Privacy**: Prevent unauthorized access to personal information.
+2. **Security**: Protect the device and its data from malicious operations.
+3. **Transparency**: Inform users about how their data is used.
+
+---
+
+## **How Permissions Work?**
+1. **Declare in Manifest**: Permissions must be declared in the app's `AndroidManifest.xml`.
+2. **Runtime Requests**: Dangerous permissions require runtime approval.
+3. **Permission Groups**: Permissions are categorized into groups, and granting one permission often grants others in the same group.
+
+---
+
+## **Prebuilt Classes, Interfaces, and Functions**
+
+### 1. **Manifest.permission**
+- **Description**: Contains constants for all permissions available in Android.
+- **Usage**: Use these constants when requesting or checking permissions.
+- **Code Example:**
+  ```java
+  if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+          == PackageManager.PERMISSION_GRANTED) {
+      // Permission granted
+  }
+  ```
+
+---
+
+### 2. **ContextCompat**
+- **Description**: Provides backward-compatible methods for accessing permissions.
+- **Key Method**: `checkSelfPermission(Context context, String permission)`
+- **Usage**: Checks if the app has been granted a specific permission.
+- **Code Example:**
+  ```java
+  int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+  ```
+
+---
+
+### 3. **ActivityCompat**
+- **Description**: Provides helper methods for managing permissions in activities.
+- **Key Methods**:
+  - `requestPermissions(Activity activity, String[] permissions, int requestCode)`
+  - `shouldShowRequestPermissionRationale(Activity activity, String permission)`
+- **Usage**: Used to request permissions or determine if a rationale should be displayed.
+- **Code Example:**
+  ```java
+  ActivityCompat.requestPermissions(this, 
+      new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+  ```
+
+---
+
+### 4. **PackageManager**
+- **Description**: Provides information about the permissions and packages installed on the device.
+- **Key Method**: `checkPermission(String permName, String pkgName)`
+- **Usage**: Checks the status of a permission for a specific package.
+- **Code Example:**
+  ```java
+  boolean granted = getPackageManager().checkPermission(
+      Manifest.permission.INTERNET, getPackageName()) == PackageManager.PERMISSION_GRANTED;
+  ```
+
+---
+
+### 5. **Permission Grouping**
+- Permissions are grouped for ease of management. For example:
+  - **Location**: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`
+  - **Contacts**: `READ_CONTACTS`, `WRITE_CONTACTS`
+
+---
+
+### 6. **Runtime Permissions Workflow**
+1. **Check Permission**: Use `ContextCompat.checkSelfPermission`.
+2. **Request Permission**: Use `ActivityCompat.requestPermissions`.
+3. **Handle Result**: Override `onRequestPermissionsResult`.
+
+---
+
+### 7. **Key Concepts**
+- **Normal Permissions**: Granted automatically by the system.
+  Example: `INTERNET`, `SET_ALARM`
+- **Dangerous Permissions**: Require user approval.
+  Example: `CAMERA`, `READ_CONTACTS`
+- **Permissions Groups**: Related permissions grouped together.
+- **Runtime Permissions**: Introduced in Android 6.0 (API Level 23).
+
+---
+
+## Real-Life Examples
+
+### 1. **Accessing the Camera**
+```java
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+        != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    if (requestCode == CAMERA_REQUEST_CODE) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission granted
+        } else {
+            // Permission denied
+        }
+    }
+}
+```
+
+### 2. **Location Tracking**
+```java
+if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) 
+        != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+} else {
+    // Permission already granted
+}
+```
+
+### 3. **Accessing Contacts**
+```java
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) 
+        != PackageManager.PERMISSION_GRANTED) {
+    ActivityCompat.requestPermissions(this,
+            new String[]{Manifest.permission.READ_CONTACTS}, CONTACTS_REQUEST_CODE);
+}
+```
+
+---
+
+## Differences in Permissions
+
+| Type                | Description                                                                 | Example                    |
+|---------------------|-----------------------------------------------------------------------------|----------------------------|
+| **Normal**          | Automatically granted, no runtime confirmation needed.                    | `INTERNET`, `SET_ALARM`   |
+| **Dangerous**       | Require explicit runtime user approval.                                    | `CAMERA`, `READ_CONTACTS` |
+| **Foreground Only** | Active only when the app is in use.                                        | `ACCESS_FINE_LOCATION`    |
+| **Background**      | Active even when the app is not visible.                                   | `ACCESS_BACKGROUND_LOCATION` |
+| **Special**         | Require device administrator or other elevated privileges.                | `SYSTEM_ALERT_WINDOW`     |
+
+---
+
+## Why Runtime Permissions?
+
+Runtime permissions offer users more control, allowing them to approve or deny permissions based on context and use. They are crucial for apps that handle sensitive user data.
+
+---
+
+## Summary
+
+- Permissions in Android protect user privacy and ensure secure app interactions with system resources.
+- Implementing runtime permissions requires careful handling, including checking, requesting, and managing results.
+- Understanding the differences between normal, dangerous, foreground, and background permissions is essential for building robust and user-friendly applications.
