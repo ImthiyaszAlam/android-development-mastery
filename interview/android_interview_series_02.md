@@ -1,6 +1,3 @@
-Here are **10 more advanced Android interview questions and answers** to help you crack the interview:  
-
----
 
 ## **📌 11. What is the difference between MVVM, MVP, and MVC?**
 ✅ **Answer:**  
@@ -205,15 +202,3 @@ Deep linking allows an app to be **opened via a URL**.
 ```
 👉 **Tip:** Use **Firebase Dynamic Links** for better cross-platform deep linking.
 
----
-
-## **🔥 Final Tips to Crack the Interview**
-✅ **Practice coding problems** related to **multi-threading, UI optimizations, and APIs**  
-✅ **Understand the lifecycle** of components (Activity, Fragment, ViewModel)  
-✅ **Know Jetpack libraries** like WorkManager, Paging, DataStore, Navigation  
-✅ **Prepare real-world examples** from your projects  
-✅ **Ask questions** to the interviewer  
-
----
-
-Let me know if you need **coding challenges or DSA questions**! 🚀
