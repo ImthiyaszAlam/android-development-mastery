@@ -1,6 +1,3 @@
-Here are **10 more advanced Android interview questions and answers** to help you crack the interview:  
-
----
 
 ## **📌 21. What are the different launch modes in Android Activities?**
 ✅ **Answer:**  
@@ -196,14 +193,3 @@ WorkManager.getInstance(context).enqueue(workRequest)
 ```
 👉 **Tip:** Use **Google Play App Signing** for extra security.
 
----
-
-## **🔥 Final Tips to Crack the Interview**
-✅ **Practice hands-on coding** with real-world problems  
-✅ **Understand Android internals** (Activity lifecycle, memory management)  
-✅ **Use Jetpack Libraries** (Navigation, Paging, WorkManager, Hilt)  
-✅ **Showcase projects** that use modern Android practices  
-
----
-
-Let me know if you need **coding challenges or system design questions**! 🚀
