@@ -195,4 +195,3 @@ suspend fun saveUserName(name: String) {
 ✅ **Showcase your problem-solving skills**  
 ✅ **Prepare a few questions** to ask the interviewer  
 
-Let me know if you need **coding questions** or **system design concepts**! 🚀
