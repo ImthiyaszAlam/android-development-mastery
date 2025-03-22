@@ -1,10 +1,4 @@
-1. **Depth of Knowledge** (Do you really understand the topic?)  
-2. **Problem-Solving Ability** (Can you think on your feet?)  
-3. **Real-World Application** (Have you implemented this in a project?)  
 
-Here are **10 follow-up questions** you might get, categorized by topic:  
-
----
 
 ### **1️⃣ Clean Architecture & MVVM**
 #### **Q1: Why did you choose Clean Architecture over MVC or MVP?**  
