@@ -21,11 +21,13 @@ A **Modifier** in Jetpack Compose is a way to change the appearance and behavior
 ### **Basic Example:**
 ```kotlin
 Text(
+
     text = "Hello, Jetpack Compose!",
     modifier = Modifier
         .padding(16.dp)
         .background(Color.Yellow)
         .clickable { /* Handle click */ }
+
 )
 ```
 📌 **Explanation:**  
