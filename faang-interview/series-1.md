@@ -1,5 +1,3 @@
-
-
 ### ❓ 1. Define MVVM architecture. How have you applied it in your projects?
 
 **🧠 How to Answer:**
